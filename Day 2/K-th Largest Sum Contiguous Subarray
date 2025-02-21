@@ -1,4 +1,5 @@
 https://www.geeksforgeeks.org/problems/k-th-largest-sum-contiguous-subarray/1
+heap method
 
 class Solution {
     public static int kthLargest(int[] arr, int k) {
