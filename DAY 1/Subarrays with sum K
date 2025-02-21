@@ -1,0 +1,32 @@
+https://www.geeksforgeeks.org/problems/subarrays-with-sum-k/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card
+
+
+
+ 
+
+
+class Solution {
+    public int countSubarrays(int[] arr, int k) {
+        int count = 0;
+        int prefix_sum = 0;
+        
+        // Map to store the frequency of prefix sums
+        HashMap<Integer, Integer> prefixSumCount = new HashMap<>();
+        prefixSumCount.put(0, 1);  // To handle the case where the prefix sum is exactly k
+        
+        // Loop through the array
+        for (int num : arr) {
+            prefix_sum += num;  // Update the prefix sum
+            
+            // If (prefix_sum - k) exists in the map, it means we found a subarray with sum k
+            if (prefixSumCount.containsKey(prefix_sum - k)) {
+                count += prefixSumCount.get(prefix_sum - k);
+            }
+            
+            // Add/update the prefix sum count in the map
+            prefixSumCount.put(prefix_sum, prefixSumCount.getOrDefault(prefix_sum, 0) + 1);
+        }
+        
+        return count;
+    }
+}
